@@ -1,9 +1,10 @@
 import Layout from '@/components/Layout';
 
-export default function HomePage() {
+const EventsPage = () => {
   return (
     <Layout>
-      <h1>Home</h1>
+      <h1>My Events</h1>
     </Layout>
   );
-}
+};
+export default EventsPage;
