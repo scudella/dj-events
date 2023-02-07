@@ -8,18 +8,18 @@ export default function EventsPage({ events }) {
       <h1>Events</h1>
       {events.length === 0 && <h3>No events to show</h3>}
       {events.map((evt) => {
-        return <EventItem key={evt.id} evt={evt} />;
+        return <EventItem key={evt.id} evt={evt.attributes} />;
       })}
     </Layout>
   );
 }
 
 export const getStaticProps = async () => {
-  const res = await fetch(`${API_URL}/api/events`);
+  const res = await fetch(`${API_URL}/api/events?populate=*&_sort=date:ASC`);
   const events = await res.json();
 
   return {
-    props: { events },
+    props: { events: events.data },
     revalidate: 1,
   };
 };
