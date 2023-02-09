@@ -28,7 +28,11 @@ const EventPage = ({ evt }) => {
         {evt.attributes.name && (
           <div className={styles.image}>
             <Image
-              src={evt.attributes.image.data.attributes.formats.medium.url}
+              src={
+                evt.attributes.image.data
+                  ? evt.attributes.image.data.attributes.formats.medium.url
+                  : '/images/event-default.png'
+              }
               width={960}
               height={600}
             />

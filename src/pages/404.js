@@ -6,7 +6,7 @@ import styles from '@/styles/404.module.css';
 const NotFoundPage = () => {
   return (
     <Layout title='Page Not Found'>
-      <div className='styles error'>
+      <div className={styles.error}>
         <h1>
           <FaExclamationTriangle /> 404
         </h1>
