@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import Image from 'next/image';
+import { FaImage } from 'react-icons/fa';
 import Layout from '@/components/Layout';
 import { API_URL } from '@/config/index';
 import styles from '@/styles/Form.module.css';
@@ -18,6 +20,11 @@ const EditEventPage = ({ evt }) => {
     time: evt.attributes.time,
     description: evt.attributes.description,
   });
+  const [imagePreview, setImagePreview] = useState(
+    evt.attributes.image.data
+      ? evt.attributes.image.data.attributes.formats.thumbnail.url
+      : null
+  );
 
   const router = useRouter();
 
@@ -138,12 +145,26 @@ const EditEventPage = ({ evt }) => {
         </div>
         <input type='submit' value='Update Event' className='btn' />
       </form>
+
+      <h2>Event Image</h2>
+      {imagePreview ? (
+        <Image src={imagePreview} height={100} width={170} />
+      ) : (
+        <div>
+          <p>No image uploaded</p>
+        </div>
+      )}
+      <div>
+        <button className='btn-secondary'>
+          <FaImage /> Set Image
+        </button>
+      </div>
     </Layout>
   );
 };
 
 export async function getServerSideProps({ params: { id } }) {
-  const res = await fetch(`${API_URL}/api/events/${id}`);
+  const res = await fetch(`${API_URL}/api/events/${id}?populate=*`);
   const evt = await res.json();
 
   return {
