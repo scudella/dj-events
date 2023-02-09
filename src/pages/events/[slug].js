@@ -9,7 +9,6 @@ import styles from '@/styles/Event.module.css';
 import { useRouter } from 'next/router';
 
 const EventPage = ({ evt }) => {
-  console.log(evt.id);
   const router = useRouter();
   const deleteEvent = async (e) => {
     if (confirm('Are you sure?')) {
