@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { FaImage } from 'react-icons/fa';
 import Layout from '@/components/Layout';
 import Modal from '@/components/Modal';
+import ImageUpload from '@/components/ImageUpload';
 import { API_URL } from '@/config/index';
 import styles from '@/styles/Form.module.css';
 import { ToastContainer, toast } from 'react-toastify';
@@ -64,6 +65,15 @@ const EditEventPage = ({ evt }) => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
+  };
+
+  const imageUploaded = async (e) => {
+    const res = await fetch(`${API_URL}/api/events/${evt.id}?populate=*`);
+    const event = await res.json();
+    setImagePreview(
+      event.data.attributes.image.data.attributes.formats.thumbnail.url
+    );
+    setShowModal(false);
   };
 
   return (
@@ -162,7 +172,7 @@ const EditEventPage = ({ evt }) => {
         </button>
       </div>
       <Modal show={showModal} onClose={() => setShowModal(false)}>
-        IMAGE UPLOAD
+        <ImageUpload evtId={evt.id} imageUploaded={imageUploaded} />
       </Modal>
     </Layout>
   );
