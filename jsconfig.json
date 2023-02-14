@@ -3,7 +3,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@/config/*": ["config/*"]
+      "@/config/*": ["config/*"],
+      "@/helpers/*": ["helpers/*"]
     }
   }
 }
