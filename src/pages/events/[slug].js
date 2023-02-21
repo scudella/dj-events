@@ -2,6 +2,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Link from 'next/link';
 import Image from 'next/image';
 import Layout from '@/components/Layout';
+import EventMap from '@/components/EventMap';
 import { API_URL } from '@/config/index';
 import styles from '@/styles/Event.module.css';
 import { useRouter } from 'next/router';
@@ -36,6 +37,8 @@ const EventPage = ({ evt }) => {
         <p>{evt.attributes.description}</p>
         <h3>Venue : {evt.attributes.venue}</h3>
         <p>{evt.attributes.address}</p>
+
+        <EventMap evt={evt.attributes} />
 
         <Link href='/events' className={styles.back}>
           {'<'} Go Back
