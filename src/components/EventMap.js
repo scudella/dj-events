@@ -22,7 +22,12 @@ const EventMap = ({ evt }) => {
       mapStyle={`https://api.maptiler.com/maps/streets-v2/style.json?key=${key}`}
     >
       <Marker key={evt.id} latitude={evt.latitude} longitude={evt.longitude}>
-        <Image src='/images/pin.svg' width={30} height={30} />
+        <Image
+          src='/images/pin.svg'
+          width={30}
+          height={30}
+          alt={'pin at location'}
+        />
       </Marker>
     </Map>
   );

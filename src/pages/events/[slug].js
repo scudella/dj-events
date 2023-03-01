@@ -28,6 +28,7 @@ const EventPage = ({ evt }) => {
               }
               width={960}
               height={600}
+              alt={evt.attributes.name}
             />
           </div>
         )}

@@ -14,6 +14,7 @@ const EventItem = ({ evt }) => {
           }
           width={170}
           height={100}
+          alt={evt.name}
         />
       </div>
       <div className={styles.info}>
